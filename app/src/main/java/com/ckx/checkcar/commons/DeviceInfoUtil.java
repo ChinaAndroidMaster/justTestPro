@@ -10,6 +10,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.ckx.checkcar.base.utils.ConnectionManager;
+import com.ckx.checkcar.model.SysData;
 
 import java.util.Locale;
 
@@ -27,7 +28,8 @@ public class DeviceInfoUtil
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
 
-        UserAgentModel tUserAgentModel = UserAgentModel.getInstance();
+//        UserAgentModel tUserAgentModel = UserAgentModel.getInstance();
+        SysData tSysData = SysData.getInstance();
 
         //app_version
         PackageManager pm = aContext.getPackageManager();//context为当前Activity上下文
@@ -38,7 +40,7 @@ public class DeviceInfoUtil
             String versionName = pi.versionName;
             int versionCode = pi.versionCode;
 
-            tUserAgentModel.setApp_version(versionName + "." + versionCode);
+            tSysData.setApp_version(versionName + "." + versionCode);
 
         } catch (PackageManager.NameNotFoundException aE)
         {
@@ -48,44 +50,32 @@ public class DeviceInfoUtil
         //net
         if (ConnectionManager.isWifiConnected(aContext))
         {
-            tUserAgentModel.setNet("WIFI");
+            tSysData.setNet("WIFI");
         }
         else if (ConnectionManager.isMobileConnected(aContext))
         {
-            tUserAgentModel.setNet("mobile");
+            tSysData.setNet("mobile");
         }
 
-        //lanuguge
-        Locale locale = aContext.getResources().getConfiguration().locale;
-        String language = locale.getLanguage();
-        tUserAgentModel.setLanguage(language);
-
         //os version
-        tUserAgentModel.setOs_version(android.os.Build.VERSION.RELEASE);
+        tSysData.setOs_version(android.os.Build.VERSION.RELEASE);
 
         //os type
-        tUserAgentModel.setOs_type(Build.MODEL);
+        tSysData.setOs_type(Build.MODEL);
 
         //device name
-        tUserAgentModel.setDevice_name(Build.BRAND);
-
-        //package name
-        tUserAgentModel.setPackage_name(aContext.getPackageName());
+        tSysData.setDevice_name(Build.BRAND);
 
         //imsi
         TelephonyManager mTelephonyMgr = (TelephonyManager) aContext.getSystemService(Context.TELEPHONY_SERVICE);
         String imsi = mTelephonyMgr.getSubscriberId();
-        tUserAgentModel.setImsi(imsi);
+        tSysData.setImsi(imsi);
 
         //device id
 //        String android_id = Settings.Secure.getString(aContext.getContentResolver(), Settings.Secure.ANDROID_ID);
 //        tUserAgentModel.setDevice_id(android_id);
         String imei = mTelephonyMgr.getDeviceId();
-        tUserAgentModel.setDevice_id(imei);
-
-        //channel
-
-        //user
+        tSysData.setDevice_id(imei);
     }
 
     /**

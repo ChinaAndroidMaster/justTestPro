@@ -4,15 +4,15 @@
     <solid android:color="#FFFFFF" />
     <stroke
         android:width="0.01dp"
-        android:color="#ebedef" />
+        android:color="@color/login_bg" />
     <padding
         android:bottom="1dp"
         android:left="0.5dp"
         android:right="0.5dp"
         android:top="0dp" />
 
-    <corners android:topLeftRadius="3dp"
-             android:topRightRadius="3dp"
-             android:bottomRightRadius="3dp"
-             android:bottomLeftRadius="3dp"/>
+    <corners android:topLeftRadius="4dp"
+             android:topRightRadius="4dp"
+             android:bottomRightRadius="4dp"
+             android:bottomLeftRadius="4dp"/>
 </shape>

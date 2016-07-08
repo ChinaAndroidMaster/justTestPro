@@ -8,8 +8,10 @@ import com.ckx.checkcar.base.net.LHBaseRequest;
 import com.ckx.checkcar.base.utils.JsonUtils;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -17,16 +19,21 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by lihui on 16/6/20.
  */
-public class APPBaseRequest<T> extends LHBaseRequest
+public abstract class APPBaseRequest<T extends Object> extends LHBaseRequest
 {
     private static final String KEY_RET_CODE  = "retCode";
     private static final String KEY_ERR_MSG   = "errorMsg";
     private static final String KEY_RET_VALUE = "value";
     private static final String CODE_SUCCESS  = "200";
 
+    private Class<T> entityClass;
+
     public APPBaseRequest(IRequestCallback aRequestCallback)
     {
         super(aRequestCallback);
+
+        entityClass = (Class<T>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     private String decrypt(String aSrc)
@@ -44,12 +51,6 @@ public class APPBaseRequest<T> extends LHBaseRequest
     public String getBaseUrl()
     {
         return NetConstants.getHost();
-    }
-
-    @Override
-    public String getApi()
-    {
-        return null;
     }
 
     @Override
@@ -85,9 +86,32 @@ public class APPBaseRequest<T> extends LHBaseRequest
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response)
             {
                 super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString)
+            {
+                super.onSuccess(statusCode, headers, responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+            {
                 if(null != mRequestCallback)
                 {
 
@@ -103,7 +127,10 @@ public class APPBaseRequest<T> extends LHBaseRequest
                                 {
                                     //解密
                                     String decrypted = decrypt(res.value);
-                                    mRequestCallback.onSuccess(decrypted);
+
+                                    T reslut = (JsonUtils.parserJsonStringToObject(decrypted, entityClass));
+
+                                    mRequestCallback.onSuccess(reslut);
                                 }
                             }
                             else

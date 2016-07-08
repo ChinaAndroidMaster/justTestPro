@@ -11,18 +11,18 @@ import com.ckx.checkcar.BuildConfig;
 public class NetConstants
 {
     ///测试地址
-    public static final String HOST_DEBUG = "api.fitahol.com";
-    public static final String PORT_DEBUG = "";//"";
+    public static final String HOST_DEBUG = "182.92.167.162";
+    public static final String PORT_DEBUG = "7799";
 
     ///发布地址
-    public static final String HOST_REAL  = "api.fitahol.com";
-    public static final String PORT_REAL  = "";
+    public static final String HOST_REAL  = "182.92.167.162";
+    public static final String PORT_REAL  = "7799";
 
-    public static final String ROOT_URL_FORMAT  = "http://%s:%s";
-    public static final String ROOT_URL_FORMAT1 = "http://%s";
+    public static final String ROOT_URL_FORMAT  = "http://%s:%s%s";
+    public static final String ROOT_URL_FORMAT1 = "http://%s%s";
 
-    public static final String ROOT_URL_FORMATS  = "https://%s:%s";
-    public static final String ROOT_URL_FORMATS1 = "https://%s";
+    public static final String ROOT_URL_FORMATS  = "https://%s:%s%s";
+    public static final String ROOT_URL_FORMATS1 = "https://%s%s";
 
     private static final boolean IS_DEBUG = BuildConfig.DEBUG;
 
@@ -42,12 +42,12 @@ public class NetConstants
 
     public static String getUrl(@NonNull String aHost, @Nullable String aPort, @NonNull String aApi)
     {
-        if (null == getPort() || getPort().length() < 1)
+        if (null == aPort || aPort.length() < 1)
         {
-            return String.format(IS_HTTPS ? ROOT_URL_FORMATS1:ROOT_URL_FORMAT1, getHost());
+            return String.format(IS_HTTPS ? ROOT_URL_FORMATS1:ROOT_URL_FORMAT1, aHost, aApi);
         }
 
-        return String.format(IS_HTTPS ? ROOT_URL_FORMATS:ROOT_URL_FORMAT, getHost(), getPort());
+        return String.format(IS_HTTPS ? ROOT_URL_FORMATS:ROOT_URL_FORMAT, aHost, aPort, aApi);
 
     }
 
@@ -56,15 +56,23 @@ public class NetConstants
         return getUrl(aHost, null, aApi);
     }
 
-    ///获取手机验证码
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //登录 我的模块相关接口
+    /**登录**/
+    public static final String API_LOGIN     = "/yixinhaocheApp/app/appraiser/login";
+
+    /**我的信息**/
+    public static final String API_MYINFO    = "/yixinhaocheApp/app/appraiser/getAppraiserInfo";
+
+    /**获取手机验证码**/
     public static final String API_SMS_CODE  = "/firmware/valid_code/";
 
-    ///登录
-    public static final String API_LOGIN     = "/firmware/valid_code/";
-
-    ///重置密码
+    /**修改密码**/
     public static final String API_RESET_PWD = "/firmware/valid_code/";
 
-    ///注册
-//    public static final String API_LOGIN     = "/firmware/valid_code/";
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //列表 相关接口
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //预检 相关接口
 }

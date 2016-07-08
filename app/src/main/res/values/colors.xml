@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FEC800</color>
+    <color name="colorPrimaryDark">#F3B601</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="toolbar_title">#FFFFFFFF</color>
-
     <color name="black_overlay">#66000000</color>
+
+
+    <!-- 登录界面 相关 颜色值-->
+    <color name="login_bg">#efeff4</color>
+    <color name="login_border">#e4e4e4</color>
+    <color name="login_btn_title">#FFFFFFFF</color>
+    <color name="login_et_hint">#E2E2E2</color>
+
+    <color name="login_btn_normal">#FEC800</color>
+    <!-- 登录界面 相关 颜色值-->
+
 
     <color name="ColorButtonDisable">#ffeeeeee</color>
     <color name="ColorButtonPressed">#ffff7438</color>

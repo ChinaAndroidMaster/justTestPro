@@ -2,11 +2,13 @@ package com.ckx.checkcar.base.net;
 
 import android.content.Context;
 
+import com.ckx.checkcar.base.edutils.EncryptDecrypt;
+import com.ckx.checkcar.base.utils.JsonUtils;
+import com.ckx.checkcar.model.SysData;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.lzy.okhttputils.OkHttpUtils;
-import com.lzy.okhttputils.request.BaseRequest;
 
 import com.loopj.android.http.RequestParams;
+import com.orhanobut.logger.Logger;
 
 import java.util.Map;
 
@@ -15,7 +17,10 @@ import java.util.Map;
  */
 public abstract class LHBaseRequest
 {
-    private BaseRequest mBaseRequest = null;
+    private static final String KEY_DATA    = "data";
+    private static final String KEY_SYSDATA = "sysData";
+
+//    private BaseRequest mBaseRequest = null;
 
     protected IRequestCallback mRequestCallback = null;
 
@@ -60,11 +65,11 @@ public abstract class LHBaseRequest
 
     public void cancel()
     {
-        if (null != mBaseRequest)
-        {
-            OkHttpUtils.getInstance().cancelTag(mBaseRequest);
-            mBaseRequest = null;
-        }
+//        if (null != mBaseRequest)
+//        {
+//            OkHttpUtils.getInstance().cancelTag(mBaseRequest);
+//            mBaseRequest = null;
+//        }
     }
 
     public RequestParams getRequestParams()
@@ -74,6 +79,22 @@ public abstract class LHBaseRequest
 
     public void execute(AsyncHttpResponseHandler aAsyncHttpResponseHandler)
     {
+        Logger.d("url: %s", getUrl());
+
         HttpClient.request(getHttpMethod(), getUrl(), getHeaders(), mRequestParams, aAsyncHttpResponseHandler);
+    }
+
+    public void setParams(Object aObject)
+    {
+        String json       = JsonUtils.requestObjectBean(aObject);
+
+        Logger.d("Login: %s", json);
+
+        String encryptStr = EncryptDecrypt.getInstance().encrypt(json);
+
+        mRequestParams.put(KEY_DATA, encryptStr);
+
+        Logger.d("SysData: %s", SysData.getInstance().sysDataJson());
+        mRequestParams.put(KEY_SYSDATA, SysData.getInstance().sysDataJson());
     }
 }

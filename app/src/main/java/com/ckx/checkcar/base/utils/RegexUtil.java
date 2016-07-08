@@ -1,4 +1,4 @@
-package com.ckx.checkcar.commons;
+package com.ckx.checkcar.base.utils;
 
 import android.support.annotation.NonNull;
 

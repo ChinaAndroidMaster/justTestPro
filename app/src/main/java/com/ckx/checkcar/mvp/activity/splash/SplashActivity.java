@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.ckx.checkcar.R;
 import com.ckx.checkcar.base.UIManager;
 import com.ckx.checkcar.base.ui.activity.BaseActivity;
+import com.ckx.checkcar.mvp.activity.login.LoginActivity;
 import com.ckx.checkcar.mvp.activity.welcome.WelcomeActivity;
 import com.ckx.checkcar.mvp.presenter.SplashPresenter;
 import com.ckx.checkcar.mvp.view.SplashView;
@@ -29,11 +30,13 @@ public class SplashActivity extends BaseActivity<SplashView, SplashPresenter> im
     @Override
     public void initViews()
     {
+
     }
 
     @Override
     public void initEvents()
     {
+
     }
 
     @NonNull
@@ -43,13 +46,13 @@ public class SplashActivity extends BaseActivity<SplashView, SplashPresenter> im
         return new SplashPresenter();
     }
 
-    @Override
-    public void acitivytClose()
-    {
-        this.finish();
-
-        UIManager.startActivity(this, WelcomeActivity.class);
-    }
+//    @Override
+//    public void acitivytClose()
+//    {
+//        this.finish();
+//
+//        UIManager.startActivity(this, LoginActivity.class);
+//    }
 
     private void startCountDown()
     {
@@ -60,5 +63,21 @@ public class SplashActivity extends BaseActivity<SplashView, SplashPresenter> im
     protected void onStart()
     {
         super.onStart();
+    }
+
+    @Override
+    public void actiyity2Login()
+    {
+        this.finish();
+
+        UIManager.startActivity(this, LoginActivity.class);
+    }
+
+    @Override
+    public void activity2Main()
+    {
+        this.finish();
+
+        UIManager.startActivity(this, LoginActivity.class);
     }
 }

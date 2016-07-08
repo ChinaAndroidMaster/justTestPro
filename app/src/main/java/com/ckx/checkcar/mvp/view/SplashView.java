@@ -7,5 +7,6 @@ import com.ckx.checkcar.base.ui.BaseView;
  */
 public interface SplashView extends BaseView
 {
-    public void acitivytClose();
+    public void actiyity2Login();
+    public void activity2Main();
 }

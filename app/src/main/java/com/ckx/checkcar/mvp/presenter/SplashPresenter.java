@@ -2,6 +2,7 @@ package com.ckx.checkcar.mvp.presenter;
 
 import com.badoo.mobile.util.WeakHandler;
 import com.ckx.checkcar.base.presenter.BaseBPresenter;
+import com.ckx.checkcar.commons.utils;
 import com.ckx.checkcar.mvp.view.SplashView;
 
 import org.xutils.common.Callback;
@@ -22,9 +23,18 @@ public class SplashPresenter extends BaseBPresenter<SplashView>
         @Override
         public void run()
         {
-            getView().acitivytClose();
 
             mHandler = null;
+            getView().actiyity2Login();
+
+//            if (utils.isLogin())
+//            {
+//                getView().actiyity2Login();
+//            }
+//            else
+//            {
+//                getView().activity2Main();
+//            }
         }
     };
 

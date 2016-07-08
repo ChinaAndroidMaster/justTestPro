@@ -23,7 +23,7 @@ public class EncryptDecryptDes3 implements BaseEncryptDecrypt
     {
         try
         {
-            return Des3Util.encode(aSrc);
+            return Des3Util.decode(aSrc);
         } catch (Exception aE)
         {
             aE.printStackTrace();

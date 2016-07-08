@@ -15,7 +15,7 @@ public class EncryptDecrypt
         return ourInstance;
     }
 
-    private BaseEncryptDecrypt mBaseEncryptDecrypt = new EncryptDecryptNull();
+    private BaseEncryptDecrypt mBaseEncryptDecrypt = new EncryptDecryptDes3();
 
     private EncryptDecrypt()
     {
