@@ -46,14 +46,6 @@ public class SplashActivity extends BaseActivity<SplashView, SplashPresenter> im
         return new SplashPresenter();
     }
 
-//    @Override
-//    public void acitivytClose()
-//    {
-//        this.finish();
-//
-//        UIManager.startActivity(this, LoginActivity.class);
-//    }
-
     private void startCountDown()
     {
         getPresenter().startCountdown();

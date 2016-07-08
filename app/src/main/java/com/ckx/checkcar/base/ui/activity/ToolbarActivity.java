@@ -3,37 +3,35 @@ package com.ckx.checkcar.base.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.ckx.checkcar.R;
 import com.ckx.checkcar.base.utils.UmengHelper;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
+import org.w3c.dom.Text;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by lihui on 16/6/17.
  */
-public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>> extends MvpActivity<V,P>
+public abstract class ToolbarActivity<V extends MvpView, P extends MvpPresenter<V>> extends BaseActivity<V,P>
 {
-    private boolean mIsXmlLayout = true;
+    @BindView(R.id.tool_bar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbar_title)
+    TextView mTvToolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        if (isXmlLayout())
-        {
-            setContentView(layoutResID());
-
-            //注解注册
-            ButterKnife.bind(this);
-
-            initViews();
-            initEvents();
-        }
+        setToolbar();
     }
 
     @Override
@@ -52,13 +50,17 @@ public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>>
         UmengHelper.onPageEnd(this.getLocalClassName());
     }
 
-    public abstract @LayoutRes int layoutResID();
+    public abstract String getToolbarTitle();
 
-    public abstract void initViews();
-    public abstract void initEvents();
-
-    public boolean isXmlLayout()
+    private void setToolbar()
     {
-        return mIsXmlLayout;
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+
+        String toolbarTitle = getToolbarTitle();
+        if (!TextUtils.isEmpty(toolbarTitle))
+        {
+            mTvToolbarTitle.setText(toolbarTitle);
+        }
     }
 }

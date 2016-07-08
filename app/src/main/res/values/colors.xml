@@ -7,6 +7,8 @@
     <color name="toolbar_title">#FFFFFFFF</color>
     <color name="black_overlay">#66000000</color>
 
+    <color name="common_bg">#efeff4</color>
+
 
     <!-- 登录界面 相关 颜色值-->
     <color name="login_bg">#efeff4</color>
@@ -242,4 +244,8 @@
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask_color">#80000000</color>
     <color name="white">#ffffffff</color>
+
+
+    <color name="comui_tab_text_color">#ff333333</color>
+
 </resources>

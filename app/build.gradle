@@ -138,6 +138,9 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.12'
     compile 'com.badoo.mobile:android-weak-handler:1.1'
     compile 'com.github.paolorotolo:appintro:4.0.0'
+
+    compile project(':mainnavigatetabbar')
+
     compile files('libs/MobCommons-2016.0426.1819.jar')
     compile files('libs/MobTools-2016.0426.1819.jar')
     compile files('libs/ShareSDK-Core-2.7.2.jar')

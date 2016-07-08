@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.ckx.checkcar.R;
+import com.ckx.checkcar.base.UIManager;
 import com.ckx.checkcar.base.edutils.EncryptDecrypt;
-import com.ckx.checkcar.base.ui.activity.BaseActivity;
+import com.ckx.checkcar.base.ui.activity.ToolbarActivity;
 import com.ckx.checkcar.base.utils.MobileVerifier;
 import com.ckx.checkcar.base.utils.WidgetUtil;
 import com.ckx.checkcar.commons.ProgressGenerator;
+import com.ckx.checkcar.mvp.activity.main.MainActivity;
 import com.ckx.checkcar.mvp.presenter.LoginPresenter;
 import com.ckx.checkcar.mvp.view.LoginView;
 import com.ckx.checkcar.wigdet.ClearEditText;
@@ -22,7 +24,7 @@ import com.orhanobut.logger.Logger;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView, ProgressGenerator.OnCompleteListener
+public class LoginActivity extends ToolbarActivity<LoginView, LoginPresenter> implements LoginView, ProgressGenerator.OnCompleteListener
 {
     private final AndroidNextInputs mInputs = new AndroidNextInputs();
     final ProgressGenerator progressGenerator = new ProgressGenerator(this);
@@ -72,6 +74,12 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     }
 
     @Override
+    public String getToolbarTitle()
+    {
+        return this.getString(R.string.login_title);
+    }
+
+    @Override
     public void onComplete()
     {
 
@@ -82,8 +90,8 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     {
         if (aSucess)
         {
-            //TODO:跳转到首页
-
+            this.finish();
+            UIManager.startActivity(this, MainActivity.class);
         } else
         {
             //TOAST.SHOW(MSG)
