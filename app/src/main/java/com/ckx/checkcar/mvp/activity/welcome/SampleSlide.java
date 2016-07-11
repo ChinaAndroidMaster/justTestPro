@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 public class SampleSlide extends Fragment
 {
-
     private static final String ARG_LAYOUT_RES_ID = "layoutResId";
 
     public static SampleSlide newInstance(int layoutResId) {
