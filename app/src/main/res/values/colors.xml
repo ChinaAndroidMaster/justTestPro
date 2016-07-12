@@ -10,6 +10,8 @@
     <color name="common_bg">#efeff4</color>
 
 
+    <color name="my_header">#FEC800</color>
+
     <!-- 登录界面 相关 颜色值-->
     <color name="login_bg">#efeff4</color>
     <color name="login_border">#e4e4e4</color>
@@ -248,13 +250,14 @@
 
     <color name="comui_tab_text_color">#ff333333</color>
 
-    <color name="carcheck_symbol_orange">#fcbc00</color>
-    <color name="carcheck_text_black">#8c8c8c</color>
-    <color name="carcheck_text_answer">#bcbcbc</color>
-    <color name="color_query_car_bg">#fec800</color>
-    <color name="carcheck_text_submit_report">#fec800</color>
-    <color name="carcheck_text_comment">#bcbcbc</color>
+    <color name="color_text_black">#333333</color>
     <color name="color_text_black_gray">#666666</color>
+    <color name="color_text_black_gray_88">#888888</color>
+    <color name="color_text_gray">#aaaaaa</color>
+    <color name="color_text_gray_dd">#dddddd</color>
+    <color name="color_text_item_order">#66beff</color>
+    <color name="color_text_ec7018">#ec7018</color>
     <color name="color_orders_bg_btn">#ff9c50</color>
+    <color name="color_orders_bg_btn_pay">#56b6ff</color>
 
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bpzstr">
+        <item>true,1,左前45度</item>
+        <item>true,2,右后45度</item>
+        <item>true,3,出厂铭牌</item>
+        <item>true,4,前挡Vin码</item>
+        <item>true,5,发动机舱</item>
+        <item>true,6,中控全貌</item>
+        <item>true,7,仪表盘</item>
+        <item>true,8,后备箱</item>
+        <item>true,9,乘客箱</item>
+        <item>true,10,左前避震</item>
+        <item>true,11,左后避震</item>
+        <item>true,12,右前避震</item>
+        <item>true,13,右后避震</item>
+        <item>false,14,行驶证</item>
+    </string-array>
+</resources>

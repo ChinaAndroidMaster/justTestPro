@@ -21,6 +21,8 @@ import com.github.yoojia.inputs.StaticScheme;
 import com.github.yoojia.inputs.ValueScheme;
 import com.orhanobut.logger.Logger;
 
+import java.io.InputStream;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
