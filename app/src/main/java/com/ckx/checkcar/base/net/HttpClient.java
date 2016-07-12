@@ -1,9 +1,15 @@
 package com.ckx.checkcar.base.net;
 
+import android.support.annotation.NonNull;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -23,7 +29,7 @@ public class HttpClient
         return client.get(aUrl, aResponseHandler);
     }
 
-    public static RequestHandle get(String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
+    public static RequestHandle get(@NonNull String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
     {
         if (null != aHeader && aHeader.size() > 0)
         {
@@ -36,7 +42,7 @@ public class HttpClient
         return client.get(aUrl, aParams, aResponseHandler);
     }
 
-    public static RequestHandle get(String aUrl, Map<String, String> aHeader, AsyncHttpResponseHandler aResponseHandler)
+    public static RequestHandle get(@NonNull String aUrl, Map<String, String> aHeader, AsyncHttpResponseHandler aResponseHandler)
     {
         if (null != aHeader && aHeader.size() > 0)
         {
@@ -49,12 +55,12 @@ public class HttpClient
         return client.get(aUrl, aResponseHandler);
     }
 
-    public static RequestHandle post(String aUrl, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
+    public static RequestHandle post(@NonNull String aUrl, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
     {
         return client.post(aUrl, aParams, aResponseHandler);
     }
 
-    public static RequestHandle post(String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
+    public static RequestHandle post(@NonNull String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
     {
         if (null != aHeader && aHeader.size() > 0)
         {
@@ -67,7 +73,7 @@ public class HttpClient
         return client.post(aUrl, aParams, aResponseHandler);
     }
 
-    public static RequestHandle request(HttpMethod aMethod, String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
+    public static RequestHandle request(HttpMethod aMethod, @NonNull String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler)
     {
         switch (aMethod)
         {
@@ -99,5 +105,33 @@ public class HttpClient
                     return post(aUrl, aParams, aResponseHandler);
                 }
         }
+    }
+
+    public static RequestHandle uploadFile(@NonNull String aImgPath, @NonNull String aName, @NonNull String aUrl, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler) throws FileNotFoundException
+    {
+        File myFile = new File(aImgPath);
+        aParams.put("file", myFile, aName);
+
+        return post(aUrl, aParams, aResponseHandler);
+    }
+
+    public static RequestHandle uploadImg(@NonNull String aImgPath, @NonNull String aName, @NonNull String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler) throws FileNotFoundException
+    {
+        File myFile = new File(aImgPath);
+        aParams.put("file", myFile, aName);
+
+        return post(aUrl, aHeader, aParams, aResponseHandler);
+    }
+
+    public static RequestHandle uploadFile(@NonNull InputStream aInputStream, @NonNull String aName, @NonNull String aUrl, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler) throws FileNotFoundException
+    {
+        aParams.put("file", aInputStream, aName);
+        return post(aUrl, aParams, aResponseHandler);
+    }
+
+    public static RequestHandle uploadImg(@NonNull InputStream aInputStream, @NonNull String aName, @NonNull String aUrl, Map<String, String> aHeader, RequestParams aParams, AsyncHttpResponseHandler aResponseHandler) throws FileNotFoundException
+    {
+        aParams.put("file", aInputStream, aName);
+        return post(aUrl, aParams, aResponseHandler);
     }
 }

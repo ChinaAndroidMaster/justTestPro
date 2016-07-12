@@ -2,6 +2,7 @@ package com.ckx.checkcar;
 
 import com.ckx.checkcar.base.BaseApplication;
 import com.ckx.checkcar.base.edutils.Des3Util;
+import com.ckx.checkcar.commons.BPZUtil;
 import com.ckx.checkcar.commons.Constants;
 import com.ckx.checkcar.commons.DeviceInfoUtil;
 
@@ -37,5 +38,8 @@ public class CoachFitAholApplication extends BaseApplication
 
         //初始化 sysdata
         DeviceInfoUtil.init(this);
+
+        //初始化
+        BPZUtil.getInstance().init(this);
     }
 }

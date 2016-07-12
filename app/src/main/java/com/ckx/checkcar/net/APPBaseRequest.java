@@ -11,6 +11,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
@@ -70,6 +72,206 @@ public abstract class APPBaseRequest<T extends Object> extends LHBaseRequest
     public String getUrl()
     {
         return NetConstants.getUrl(getBaseUrl(), getPort(), getApi());
+    }
+
+    public void uploadImg(InputStream aInputStream, String aName) throws FileNotFoundException
+    {
+        super.uploadImg(aInputStream, aName, new JsonHttpResponseHandler(){
+            @Override
+            public void onStart()
+            {
+                super.onStart();
+                if (null != mRequestCallback && mRequestCallback instanceof IAccessoryCallback)
+                {
+                    ((IAccessoryCallback)mRequestCallback).accessoriesStart();
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response)
+            {
+                super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString)
+            {
+                super.onSuccess(statusCode, headers, responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+            {
+                if(null != mRequestCallback)
+                {
+
+                    if (200 == statusCode && null != response)
+                    {
+                        OperResponse res = JsonUtils.parserJsonStr2Obj(response, OperResponse.class);
+
+                        if (null != res)
+                        {
+                            if (res.retCode.equals(CODE_SUCCESS))
+                            {
+                                if (null != res.value && res.value.length() > 0)
+                                {
+                                    //解密
+                                    String decrypted = decrypt(res.value);
+
+                                    T reslut = (JsonUtils.parserJsonStringToObject(decrypted, entityClass));
+
+                                    mRequestCallback.onSuccess(reslut);
+                                }
+                            }
+                            else
+                            {
+                                //TODO,其他错误
+                            }
+                        }
+                        else
+                        {
+                            //TODO,其他错误
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable)
+            {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                if(null != mRequestCallback)
+                {
+                    mRequestCallback.onError(throwable, responseString);
+                }
+            }
+
+            @Override
+            public void onFinish()
+            {
+                super.onFinish();
+                if (null != mRequestCallback )
+                {
+                    mRequestCallback.onFinished();
+                    if ( mRequestCallback instanceof IAccessoryCallback)
+                    {
+                        ((IAccessoryCallback)mRequestCallback).accessoriesStop();
+                    }
+                }
+            }
+        });
+    }
+
+    public void uploadImg(String aImgPath, String aName) throws FileNotFoundException
+    {
+        super.uploadImg(aImgPath, aName, new JsonHttpResponseHandler(){
+            @Override
+            public void onStart()
+            {
+                super.onStart();
+                if (null != mRequestCallback && mRequestCallback instanceof IAccessoryCallback)
+                {
+                    ((IAccessoryCallback)mRequestCallback).accessoriesStart();
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response)
+            {
+                super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse)
+            {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString)
+            {
+                super.onSuccess(statusCode, headers, responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+            {
+                if(null != mRequestCallback)
+                {
+
+                    if (200 == statusCode && null != response)
+                    {
+                        OperResponse res = JsonUtils.parserJsonStr2Obj(response, OperResponse.class);
+
+                        if (null != res)
+                        {
+                            if (res.retCode.equals(CODE_SUCCESS))
+                            {
+                                if (null != res.value && res.value.length() > 0)
+                                {
+                                    //解密
+                                    String decrypted = decrypt(res.value);
+
+                                    T reslut = (JsonUtils.parserJsonStringToObject(decrypted, entityClass));
+
+                                    mRequestCallback.onSuccess(reslut);
+                                }
+                            }
+                            else
+                            {
+                                //TODO,其他错误
+                            }
+                        }
+                        else
+                        {
+                            //TODO,其他错误
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable)
+            {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                if(null != mRequestCallback)
+                {
+                    mRequestCallback.onError(throwable, responseString);
+                }
+            }
+
+            @Override
+            public void onFinish()
+            {
+                super.onFinish();
+                if (null != mRequestCallback )
+                {
+                    mRequestCallback.onFinished();
+                    if ( mRequestCallback instanceof IAccessoryCallback)
+                    {
+                        ((IAccessoryCallback)mRequestCallback).accessoriesStop();
+                    }
+                }
+            }
+        });
     }
 
     public void execute()
