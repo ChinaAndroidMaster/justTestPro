@@ -33,4 +33,35 @@
     <string name="str_check_version" translatable="false">更新版本</string>
     <string name="str_check_version_ing" translatable="false">检查版本中&#8230;</string>
 
+    <string name="cc_carbaserecord_symbol">*</string>
+    <string name="carcheck_text_vin">VIN码</string>
+    <string name="carcheck_text_brand">品牌型号</string>
+    <string name="carcheck_text_yearconfig">年款配置</string>
+    <string name="carcheck_text_factorydate">出场日期</string>
+    <string name="carcheck_text_mileage">(单位：km)</string>
+    <string name="carcheck_text_mileagename">里程数</string>
+    <string name="carcheck_text_registdate">登记日期</string>
+    <string name="carcheck_text_environmentalevel">环保标准</string>
+    <string name="carcheck_text_procedue">资料手续</string>
+    <string name="carcheck_text_marketname">市场名称</string>
+    <string name="carcheck_text_carsellername">车商名称</string>
+    <string name="carcheck_text_carsellercontaction">车商联系方式</string>
+    <string name="carcheck_text_trasactioncount">过户次数</string>
+    <string name="carcheck_text_carsellerprice">车商报价</string>
+    <string name="carcheck_text_nothing_space"> </string>
+    <string name="carcheck_text_count">(次)</string>
+    <string name="carcheck_text_wan">(万)</string>
+    <string name="carcheck_text_to">至</string>
+    <string name="carcheck_text_carentity">车身周正</string>
+    <string name="carcheck_text_remark">备注</string>
+    <string name="carcheck_text_select">请选择</string>
+    <string name="carcheck_photo_left">左前45度</string>
+    <string name="carcheck_photo_symbol">*</string>
+    <string name="str_car_comment_input_serious">请认真填写用户评估</string>
+    <string name="carcheck_comment_submit_report">提交报告</string>
+    <string name="carcheck_text_link_qr">扫一扫关联二维码</string>
+    <string name="carcheck_price">去估价</string>
+    <string name="carcheck_price_guesss">车估价</string>
+    <string name="carcheck_wan">（万）</string>
+
 </resources>

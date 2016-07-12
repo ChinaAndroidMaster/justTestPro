@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_15dip"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_carbaserecord_symbol"
+            android:textColor="@color/carcheck_symbol_orange"
+            android:layout_marginRight="@dimen/dimen_5dip"
+            android:textSize="@dimen/dimen_12sp"/>
+
+        <TextView
+            android:layout_width="@dimen/dimen_55dip"
+            android:layout_height="wrap_content"
+            android:text="@string/carcheck_text_carentity"
+            android:textColor="@color/carcheck_text_black"
+            android:textSize="@dimen/dimen_12sp"
+            android:layout_marginRight="@dimen/dimen_10dip"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dip"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/listitem_carcheck_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_btn_remark_undo"
+            android:gravity="center"
+            android:padding="@dimen/dimen_10dip"
+            android:paddingBottom="@dimen/dimen_5dip"
+            android:text="@string/carcheck_text_remark"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_15sp" />
+
+        <RelativeLayout
+            android:id="@+id/listitem_carcheck_tphoto"
+            android:layout_width="@dimen/dimen_40dip"
+            android:layout_height="@dimen/dimen_40dip"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_6dip"
+            android:background="@drawable/bg_btn_checkitem_photo"
+            android:layout_toLeftOf="@id/listitem_carcheck_remark" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/carcheck_photo_undone" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/listitem_carcheck_answer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dip"
+            android:layout_marginRight="@dimen/dimen_6dip"
+            android:layout_toLeftOf="@id/listitem_carcheck_tphoto"
+            android:background="@drawable/bg_answer"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_3dip"
+            android:paddingLeft="@dimen/dimen_13dip"
+            android:paddingRight="@dimen/dimen_13dip"
+            android:paddingTop="@dimen/dimen_3dip"
+            android:hint="@string/carcheck_text_select"
+            android:textColor="@color/carcheck_text_answer"
+            android:textColorHint="@color/carcheck_text_answer"
+            android:textSize="@dimen/dimen_12sp" />
+    </RelativeLayout>
+
+    <com.ckx.checkcar.wigdet.HorizontalListView
+        android:id="@+id/listitem_carcheck_hlv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_55dip"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:padding="@dimen/dimen_5dip"
+        android:visibility="gone" />
+
+
+
+</LinearLayout>
