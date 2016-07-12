@@ -10,7 +10,6 @@
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/tool_bar"
         android:background="?attr/colorPrimary"
-        app:navigationIcon="?attr/homeAsUpIndicator"
         >
 
         <TextView
@@ -21,6 +20,6 @@
             android:singleLine="true"
             android:text="Title"
             android:textColor="@color/toolbar_title"
-            android:textSize="32sp" />
+            android:textSize="16sp" />
     </android.support.v7.widget.Toolbar>
 </FrameLayout>

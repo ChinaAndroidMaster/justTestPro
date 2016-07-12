@@ -7,7 +7,11 @@ import com.ckx.checkcar.base.presenter.BaseBPresenter;
 import com.ckx.checkcar.commons.utils;
 import com.ckx.checkcar.model.ResultLogin;
 import com.ckx.checkcar.mvp.view.LoginView;
+import com.ckx.checkcar.net.api.ApiBPZUploadImg;
 import com.ckx.checkcar.net.api.ApiLogin;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Created by lihui on 16/7/6.

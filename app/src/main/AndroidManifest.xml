@@ -64,6 +64,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name="com.ckx.checkcar.mvp.activity.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name">
+        </activity>
 
         <!-- umeng meta data start -->
         <meta-data

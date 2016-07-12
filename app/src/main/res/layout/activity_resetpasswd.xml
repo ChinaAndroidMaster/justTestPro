@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_login_root_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+        />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/login_bg"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dimen_10dip"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/dimen_10dip"
+            android:background="@color/login_bg"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/logo"/>
+            <LinearLayout
+                android:id="@+id/layout_login_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/login_button_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/login_phone_icon"/>
+
+                    <com.ckx.checkcar.wigdet.ClearEditText
+                        android:id="@+id/et_user_name"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="phone"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="3dp"
+                        android:textColor="@color/black"
+                        android:maxLength="11"
+                        android:textSize="15sp"
+                        android:background="@null"
+                        android:textColorHint="@color/login_et_hint"
+                        android:hint="请输入手机号"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="44dp"
+                    android:layout_marginRight="30dp"
+                    android:background="#e2e2e2"></View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/login_password"/>
+
+                    <com.ckx.checkcar.wigdet.ClearEditText
+                        android:id="@+id/et_passwd"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="phone"
+                        android:background="@null"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="3dp"
+                        android:maxLength="11"
+                        android:textColorHint="@color/login_et_hint"
+                        android:hint="请输入密码"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.dd.processbutton.iml.ActionProcessButton
+                android:id="@+id/btnSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:text="登录"
+                android:textColor="@color/login_btn_title"
+                android:textSize="18sp"
+                custom:pb_colorComplete="@color/login_btn_normal"
+                custom:pb_colorNormal="@color/login_btn_normal"
+                custom:pb_colorPressed="@color/login_btn_normal"
+                custom:pb_colorProgress="@color/purple_progress"
+                custom:pb_textComplete="登录成功"
+                custom:pb_textProgress="登录中" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

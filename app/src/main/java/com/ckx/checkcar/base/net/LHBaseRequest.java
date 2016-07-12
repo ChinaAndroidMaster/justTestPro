@@ -1,15 +1,16 @@
 package com.ckx.checkcar.base.net;
 
-import android.content.Context;
-
 import com.ckx.checkcar.base.edutils.EncryptDecrypt;
 import com.ckx.checkcar.base.utils.JsonUtils;
 import com.ckx.checkcar.model.SysData;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
 import com.orhanobut.logger.Logger;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -26,9 +27,12 @@ public abstract class LHBaseRequest
 
     public RequestParams mRequestParams = new RequestParams();
 
-    private AsyncHttpResponseHandler mAsyncHttpResponseHandler = null;
+//    private AsyncHttpResponseHandler mAsyncHttpResponseHandler = null;
+//
+//    private Context mContext;
 
-    private Context mContext;
+    private RequestHandle mRequestHandle = null;
+
     /**
      * 获取头部参数
      * @return
@@ -65,11 +69,14 @@ public abstract class LHBaseRequest
 
     public void cancel()
     {
-//        if (null != mBaseRequest)
-//        {
-//            OkHttpUtils.getInstance().cancelTag(mBaseRequest);
-//            mBaseRequest = null;
-//        }
+        if (null != mRequestHandle)
+        {
+            if (!mRequestHandle.isCancelled())
+            {
+                mRequestHandle.cancel(true);
+            }
+            mRequestHandle = null;
+        }
     }
 
     public RequestParams getRequestParams()
@@ -77,11 +84,29 @@ public abstract class LHBaseRequest
         return mRequestParams;
     }
 
-    public void execute(AsyncHttpResponseHandler aAsyncHttpResponseHandler)
+    public RequestHandle execute(AsyncHttpResponseHandler aAsyncHttpResponseHandler)
     {
         Logger.d("url: %s", getUrl());
 
-        HttpClient.request(getHttpMethod(), getUrl(), getHeaders(), mRequestParams, aAsyncHttpResponseHandler);
+        mRequestHandle = HttpClient.request(getHttpMethod(), getUrl(), getHeaders(), mRequestParams, aAsyncHttpResponseHandler);
+        return mRequestHandle;
+    }
+
+    public RequestHandle uploadImg(String aImgPath, String aName, AsyncHttpResponseHandler aAsyncHttpResponseHandler) throws FileNotFoundException
+    {
+        Logger.d("url: %s", getUrl());
+        Logger.d("imgpath: %s", aImgPath);
+
+        mRequestHandle = HttpClient.uploadFile(aImgPath, aName, getUrl(), mRequestParams, aAsyncHttpResponseHandler);
+        return mRequestHandle;
+    }
+
+    public RequestHandle uploadImg(InputStream aInputStream, String aName, AsyncHttpResponseHandler aAsyncHttpResponseHandler) throws FileNotFoundException
+    {
+        Logger.d("url: %s", getUrl());
+
+        mRequestHandle = HttpClient.uploadFile(aInputStream, aName, getUrl(), mRequestParams, aAsyncHttpResponseHandler);
+        return mRequestHandle;
     }
 
     public void setParams(Object aObject)

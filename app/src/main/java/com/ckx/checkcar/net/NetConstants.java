@@ -13,6 +13,8 @@ public class NetConstants
     ///测试地址
     public static final String HOST_DEBUG = "182.92.167.162";
     public static final String PORT_DEBUG = "7799";
+//    public static final String HOST_DEBUG = "10.106.74.86";
+//    public static final String PORT_DEBUG = "8080";
 
     ///发布地址
     public static final String HOST_REAL  = "182.92.167.162";
@@ -75,4 +77,7 @@ public class NetConstants
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //预检 相关接口
+
+    /**图片上传**/
+    public static final String API_UPLOAD_IMG = "/yixinhaocheApp/report/uploadimg";
 }

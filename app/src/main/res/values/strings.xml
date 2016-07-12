@@ -14,4 +14,23 @@
     <string name="image_logo">logo</string>
     <string name="nick_name_clear">name_clear</string>
     <string name="pass_word_clear">pwd_clear</string>
+
+
+    <string name="login_title">登录</string>
+
+    <string name="tabbar_home">首页</string>
+    <string name="tabbar_publish">预检</string>
+    <string name="tabbar_my">我的</string>
+
+    <string name="official_web" translatable="false">官  网 :</string>
+    <string name="official_web_cont" translatable="false">www.shifukanche.com</string>
+    <string name="version" translatable="false">版  本 :</string>
+    <string name="service" translatable="false">客  服 :</string>
+    <string name="service_phone" translatable="false">4008188858</string>
+    <string name="copyright" translatable="false">Copyright©2014 \n 普信恒业科技发展(北京)有限公司版权所有</string>
+    <string name="address" translatable="false">地  址 :</string>
+    <string name="address_cont" translatable="false">北京市朝阳区温特莱中心15楼</string>
+    <string name="str_check_version" translatable="false">更新版本</string>
+    <string name="str_check_version_ing" translatable="false">检查版本中&#8230;</string>
+
 </resources>
